@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.palash.ui_design03.R
 import com.palash.ui_design03.databinding.FragmentLoginBinding
+import com.palash.ui_design03.model.login.request.LoginRequest
+import com.palash.ui_design03.view_model.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -19,6 +22,7 @@ private const val ARG_PARAM2 = "param2"
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private val loginViewModel by viewModels<LoginViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +34,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*binding.txtSignup.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
-        }*/
+        binding.btnLogin.setOnClickListener {
+            loginViewModel.loginReq(LoginRequest("0lelplR", "kminchelle"))
+        }
     }
 
     override fun onDestroyView() {
